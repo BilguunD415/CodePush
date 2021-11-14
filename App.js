@@ -52,12 +52,10 @@ const Section = ({children, title}): Node => {
   );
 };
 
-const onButtonPress=()=> {
-  codePush.sync({
-    updateDialog: true,
-    installMode: codePush.InstallMode.IMMEDIATE
-  });
+let MyApp: () => React$Node = () => {
 }
+
+MyApp = codePush(MyApp);
 
 const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
