@@ -25,7 +25,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-
+import codePush from "react-native-code-push";
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
@@ -52,6 +52,13 @@ const Section = ({children, title}): Node => {
   );
 };
 
+const onButtonPress=()=> {
+  codePush.sync({
+    updateDialog: true,
+    installMode: codePush.InstallMode.IMMEDIATE
+  });
+}
+
 const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -70,6 +77,9 @@ const App: () => Node = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
+          <TouchableOpacity onPress={onButtonPress}>
+            <Text>Check for updates</Text>
+          </TouchableOpacity>
           <Section title="Step One">
             Edit <Text style={styles.highlight}>App.js</Text> to change this
             screen and then come back to see your edits.
